@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const register = require('./controllers/register');
 const login = require('./controllers/login');
 const profile = require('./controllers/profile');
-const config = require('./config/config.json');
 
 module.exports = router => {
 
@@ -26,7 +25,7 @@ module.exports = router => {
 
 			.then(result => {
 
-				const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
+				const token = jwt.sign(result, credentials.name, { expiresIn: 1440});
 			
 				res.status(result.status).json({ message: result.message, token: token });
 
@@ -41,8 +40,6 @@ module.exports = router => {
 		const userName = req.body.userName;
 		const correo = req.body.correo;
 		const contrasenia = req.body.contrasenia;
-		const listaChats = req.body.listaChats;
-		const listaMensajes = req.body.listaMensajes;
 
 		if (!userName || !correo || !contrasenia || !userName.trim() || !correo.trim() || !contrasenia.trim()) {
 
@@ -50,12 +47,12 @@ module.exports = router => {
 
 		} else {
 
-			register.registerUser(userName, correo, contrasenia,listaChats,listaMensajes)
+			register.registerUser(userName, correo, contrasenia)
 
 			.then(result => {
 
 				res.setHeader('Location', '/users/'+userName);
-				res.status(result.status).json({ message: result.message })
+				res.status(result.status).json({ message: result.message})
 			})
 
 			.catch(err => res.status(err.status).json({ message: err.message }));

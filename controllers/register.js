@@ -9,20 +9,18 @@ exports.registerUser = (userName, correo, contrasenia) =>
 		const newUser = new user({
 			userName: userName,
 			correo: correo,
-			contrasenia: contrasenia,
-			listaChats: new Array,
-			listaMensajes: new Array
+			contrasenia: contrasenia
 		});
 
 		newUser.save()
 
-		.then(() => resolve({ status: 201, message: 'User Registered Sucessfully !' }))
+		.then(() => resolve({ status: 201, message: 'Usuario registrado correctamente!' }))
 
 		.catch(err => {
 
 			if (err.code == 11000) {
 						
-				reject({ status: 409, message: 'User Already Registered !' });
+				reject({ status: 409, message: 'Usuario ya existente!' });
 
 			} else {
 

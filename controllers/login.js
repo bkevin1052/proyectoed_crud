@@ -1,7 +1,6 @@
 'use strict';
 
 const user = require('../models/user');
-const bcrypt = require('bcryptjs');
 
 exports.loginUser = (userName, contrasenia) => 
 
@@ -24,9 +23,9 @@ exports.loginUser = (userName, contrasenia) =>
 
 		.then(user => {
 
-			const contrasenia = user.contrasenia;
+			const contra = user.contrasenia;
 
-			if (bcrypt.compareSync(contrasenia, contrasenia)) {
+			if (contra === contrasenia) {
 
 				resolve({ status: 200, message: userName });
 
