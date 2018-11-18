@@ -84,7 +84,7 @@ module.exports = router => {
 
 			try {
 
-  				var decoded = jwt.verify(token, config.secret);
+  				var decoded = jwt.verify(token, req.params.id);
 
   				return decoded.message === req.params.id;
 
