@@ -25,7 +25,7 @@ module.exports = router => {
 
 			.then(result => {
 
-				const token = jwt.sign(result, credentials.name, { expiresIn: 1440});
+				const token = jwt.sign(result, credentials.name, { expiresIn: 3600});
 			
 				res.status(result.status).json({ message: result.message, token: token });
 
