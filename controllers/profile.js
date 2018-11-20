@@ -1,8 +1,9 @@
 'use strict';
 
 const user = require('../models/user');
+const chat = require('../models/chat');
 
-exports.getProfile = userName => 
+	exports.getProfile = userName => 
 	
 	new Promise((resolve,reject) => {
 
@@ -13,3 +14,18 @@ exports.getProfile = userName =>
 		.catch(err => reject({ status: 500, message: 'Internal Server Error !' }))
 
 	});
+
+	exports.eliminaruser = userName => 
+	
+	new Promise((resolve,reject) => {
+		user.remove({userName: userName}, function(err) {
+			if (!err) {
+				return resolve({status:200, message:'Cuenta eliminada exitosamente'});
+			}
+			else {
+				return reject({status:500, message:'Error al eliminar la cuenta'});
+			}
+		});
+	});
+
+	

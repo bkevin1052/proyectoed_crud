@@ -3,6 +3,7 @@
 const auth = require('basic-auth');
 const jwt = require('jsonwebtoken');
 
+
 const register = require('./controllers/register');
 const login = require('./controllers/login');
 const profile = require('./controllers/profile');
@@ -11,13 +12,14 @@ module.exports = router => {
 
 	router.get('/', (req, res) => res.end('Welcome to Duck Chat !'));
 
+	//POST
 	router.post('/authenticate', (req, res) => {
 
 		const credentials = auth(req);
 
 		if (!credentials) {
 
-			res.status(400).json({ message: 'Invalid Request !' });
+			res.status(400).json({ message: 'Error al autenticar !' });
 
 		} else {
 
@@ -35,6 +37,7 @@ module.exports = router => {
 		}
 	});
 
+	//POST
 	router.post('/users', (req, res) => {
 
 		const userName = req.body.userName;
@@ -43,7 +46,7 @@ module.exports = router => {
 
 		if (!userName || !correo || !contrasenia || !userName.trim() || !correo.trim() || !contrasenia.trim()) {
 
-			res.status(400).json({message: 'Invalid Request !'});
+			res.status(400).json({message: 'Error al crear usuario !'});
 
 		} else {
 
@@ -59,6 +62,7 @@ module.exports = router => {
 		}
 	});
 
+	//GET
 	router.get('/users/:id', (req,res) => {
 
 		if (checkToken(req)) {
@@ -71,11 +75,19 @@ module.exports = router => {
 
 		} else {
 
-			res.status(401).json({ message: 'Invalid Token !' });
+			res.status(401).json({ message: 'Error al iniciar sesion !' });
 		}
+	});
+
+	//DELETE
+	router.delete('/users/delete/:id', (req,res) =>{
+		profile.eliminaruser(req.params.id)
+		.then(result => res.json(result))
+		.catch(err => res.status(err.status).json({ message: err.message }));
 	});
 	
 
+	//FUNCTION
 	function checkToken(req) {
 
 		const token = req.headers['x-access-token'];
