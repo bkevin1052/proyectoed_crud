@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const register = require('./controllers/register');
 const login = require('./controllers/login');
 const profile = require('./controllers/profile');
+const chats = require('./controllers/chats');
 
 module.exports = router => {
 
@@ -54,7 +55,7 @@ module.exports = router => {
 
 			.then(result => {
 
-				res.setHeader('Location', '/users/'+userName);
+				res.setHeader('Location', '/users/');
 				res.status(result.status).json({ message: result.message})
 			})
 
@@ -92,6 +93,28 @@ module.exports = router => {
 	//GET
 	router.get('/chats/get/allchats', profile.allchats);
 	
+	//POST
+	router.post('/chats/nuevochat/create', (req, res) => {
+
+		const username1 = req.body.contacto1;
+		const username2 = req.body.contacto2;
+		const llave = req.body.llave;
+
+		if (!username1 || !username2|| !llave ) {
+
+			res.status(400).json({message: 'Error al crear el chat !'});
+
+		} else {
+
+			chats.crearchat(username1, username2, llave)
+
+			.then(result => {
+				res.status(result.status).json({ message: result.message})
+			})
+
+			.catch(err => res.status(err.status).json({ message: err.message }));
+		}
+	});
 
 	//FUNCTION
 	function checkToken(req) {

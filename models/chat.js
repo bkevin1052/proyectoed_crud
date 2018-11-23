@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const chatSchema = mongoose.Schema({ 
-	emisor :  String,
-	receptor	: String, 
+	contacto1 :  String,
+	contacto2	: String, 
+	llave: String,
 	listaMensajes	: Array,
 });
 

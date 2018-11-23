@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const mensajeSchema = mongoose.Schema({ 
-	contacto1 :  String,
-	contacto2	: String, 
+	emisor :  String,
+	receptor	: String, 
     mensaje	: String,
-    llave : String
 });
 
 mongoose.Promise = global.Promise;
