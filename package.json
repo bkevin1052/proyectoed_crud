@@ -12,6 +12,7 @@
     "basic-auth": "^1.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "ee-first": "^1.1.1",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.13.17",
