@@ -85,6 +85,9 @@ module.exports = router => {
 		.then(result => res.json(result))
 		.catch(err => res.status(err.status).json({ message: err.message }));
 	});
+
+	//GET
+	router.get('/users/get/allcontacts', profile.allcontacts);
 	
 
 	//FUNCTION

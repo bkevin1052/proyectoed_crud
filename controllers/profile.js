@@ -28,4 +28,12 @@ const chat = require('../models/chat');
 		});
 	});
 
+	exports.allcontacts = function(req,res){
+		user.find(function(err,users){
+			if(err) res.status(404).send(err.message);
+			res.send(users);			
+		});
+	};
+
+
 	
