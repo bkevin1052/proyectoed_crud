@@ -88,6 +88,9 @@ module.exports = router => {
 
 	//GET
 	router.get('/users/get/allcontacts', profile.allcontacts);
+
+	//GET
+	router.get('/chats/get/allchats', profile.allchats);
 	
 
 	//FUNCTION

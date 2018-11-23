@@ -35,5 +35,14 @@ const chat = require('../models/chat');
 		});
 	};
 
+	//FALTA FILTRAR QUE RETORNE SOLO LOS CHATS QUE CONTENTAN EL NOMBRE DEL USUARIO
+	exports.allchats = function(req,res){
+		chat.find(function(err,chats){
+			if(err) res.status(404).send(err.message);
+			res.send(chats);			
+		});
+	};
+	
+
 
 	
