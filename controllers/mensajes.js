@@ -4,8 +4,8 @@ const mensaje = require('../models/mensaje');
 const chat = require('../models/chat');
 
 exports.crearmensaje = function(req,res){
-         const emisor = req.body.Emisor;
-		const receptor = req.body.Receptor;
+         const emisor = req.body.emisor;
+		const receptor = req.body.receptor;
 		const Mensaje = req.body.mensaje;
 	    var nuevosmensajes;
         const newMensaje = new mensaje({
