@@ -29,9 +29,10 @@ exports.crearmensaje = function(req,res){
          
 };
 
-exports.allmessages = function(req,res){
-	chat.find({"$or":[{"$and":[{contacto1: req.body.contacto1},{contacto2: req.body.contacto2}]},{"$and":[{contacto2: req.body.contacto1},{contacto1: req.body.contacto2}]}]},function(err,chats){
-		if(err) res.status(404).send(err.message);
-		res.send(chats);			
-	});
-};
+exports.allmessages = (emisor,receptor) =>
+    new Promise((resolve,reject) => {
+	chat.find({"$or":[{"$and":[{contacto1: emisor},{contacto2: receptor}]},{"$and":[{contacto2: emisor},{contacto1: emisor}]}]})
+		.then(chats => resolve(chats[0]))
+
+		.catch(err => reject({ status: 500, message: 'Internal Server Error !' }))
+});
