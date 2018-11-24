@@ -28,3 +28,10 @@ exports.crearmensaje = function(req,res){
 }, millisecondsToWait);
          
 };
+
+exports.allmessages = function(req,res){
+	chat.find({"$or":[{"$and":[{contacto1: req.params.userName},{contacto2: req.params.receptor}]},{"$and":[{contacto2: req.body.contacto1},{contacto1: req.body.contacto2}]}]},function(err,chats){
+		if(err) res.status(404).send(err.message);
+		res.send(chats);			
+	});
+};

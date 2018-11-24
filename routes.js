@@ -96,6 +96,9 @@ module.exports = router => {
 
 	//GET
 	router.get('/chats/get/allchats/:id', chats.allchats);
+
+	//POST
+	router.post('/chats/allmessages', mensajes.allmessages);
 	
 	//POST
 	router.post('/chats/nuevochat/create', (req, res) => {
