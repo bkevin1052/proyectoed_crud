@@ -8,6 +8,7 @@ const register = require('./controllers/register');
 const login = require('./controllers/login');
 const profile = require('./controllers/profile');
 const chats = require('./controllers/chats');
+const mensajes = require('./controllers/mensajes');
 
 module.exports = router => {
 
@@ -87,11 +88,14 @@ module.exports = router => {
 		.catch(err => res.status(err.status).json({ message: err.message }));
 	});
 
+	//PUT
+	router.put('chats/mensajes/agregarmensaje', mensajes.crearmensaje);
+
 	//GET
 	router.get('/users/get/allcontacts', profile.allcontacts);
 
 	//GET
-	router.get('/chats/get/allchats', profile.allchats);
+	router.get('/chats/get/allchats/:id', chats.allchats);
 	
 	//POST
 	router.post('/chats/nuevochat/create', (req, res) => {
