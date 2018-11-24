@@ -34,7 +34,7 @@ exports.allmessages = function(req,res){
         const emisor = req.query.array[0];
         const receptor = req.query.array[1];
 
-        chat.find({"$or":[{"$and":[{contacto1: emisor},{contacto2: receptor}]},{"$and":[{contacto2: emisor},{contacto1: emisor}]}]},function(err,chats){
+        chat.find({"$or":[{"$and":[{contacto1: emisor},{contacto2: receptor}]},{"$and":[{contacto2: emisor},{contacto1: receptor}]}]},function(err,chats){
 			if(err) res.status(404).send(err.message);
 			res.send(chats);			
 		});
