@@ -98,13 +98,7 @@ module.exports = router => {
 	router.get('/chats/get/allchats/:id', chats.allchats);
 
 	//POST
-	router.get('/chats/get/allmessages', (req,res)=>{
-		const emisor = req.query.array[0];
-		const receptor = req.query.array[0];
-		mensajes.allmessages(emisor,receptor)
-		.then(result => result)
-		.catch(err => res.status(err.status).json({ message: err.message }));
-	});
+	router.get('/chats/get/allmessages', mensajes.allmessages);
 	
 	//POST
 	router.post('/chats/nuevochat/create', (req, res) => {
