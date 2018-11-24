@@ -88,8 +88,8 @@ module.exports = router => {
 		.catch(err => res.status(err.status).json({ message: err.message }));
 	});
 
-	//PUT
-	router.put('chats/mensajes/agregarmensaje', mensajes.crearmensaje);
+	//POST
+	router.post('/chats/mensajes/agregarmensaje', mensajes.crearmensaje);
 
 	//GET
 	router.get('/users/get/allcontacts', profile.allcontacts);
